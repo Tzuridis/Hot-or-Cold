@@ -62,7 +62,9 @@ function Guessing(guess) {
         $("h2#feedback").html("Warm");
     } else if(Math.abs(Choose - guess) < 30 && Math.abs(Choose - guess) > 19){
         $("h2#feedback").html("Cold");
-    } else {
+    } else if (Math.abs(Choose - guess) < 40 && Math.abs(Choose - guess) > 99) {
         $("h2#feedback").html("Freezing");
+    } else {
+        $("h2#feedback").html("You Win!");
     }
 }
