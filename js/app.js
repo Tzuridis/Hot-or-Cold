@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     Random();
     console.log(Choose)
@@ -46,14 +45,24 @@ $(document).ready(function() {
 // Game Mechanics
 
 function Random() {
-    Choose = Math.floor(Math.random()*100)+1;
+    Choose = Math.floor(Math.random() * 100) + 1;
 }
+
 
 
 function Guessing(guess) {
-var guess =  $(".guessBox:last-child")
-    if (guess === Choose) {
-       $("h2#feedback").html("You win!")
-    } 
-}
+    var guess = document.getElementById("guessList").lastChild.innerHTML;
+    console.log(document.getElementById("guessList").lastChild.innerHTML);
 
+    if (Choose === guess) {
+        $("h2#feedback").html("You Win!");
+     } else if(Math.abs(Choose - guess) < 10 && Math.abs(Choose - guess) > 0){
+        $("h2#feedback").html("Hot");
+    } else if(Math.abs(Choose - guess) < 20 && Math.abs(Choose - guess) > 9){
+        $("h2#feedback").html("Warm");
+    } else if(Math.abs(Choose - guess) < 30 && Math.abs(Choose - guess) > 19){
+        $("h2#feedback").html("Cold");
+    } else {
+        $("h2#feedback").html("Freezing");
+    }
+}
