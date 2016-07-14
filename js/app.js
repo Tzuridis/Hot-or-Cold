@@ -1,3 +1,5 @@
+var counter = 0;
+
 $(document).ready(function() {
     Random();
     console.log(Choose)
@@ -15,6 +17,7 @@ $(document).ready(function() {
     // New Game
     $('a.new').click(function() {
         $('#count').html(0);
+        counter = 0;
         $('.text').empty();
         $('.guessBox').empty();
         Random();
@@ -34,8 +37,10 @@ $(document).ready(function() {
             $('#count').html(-1);
         }
         Guessing(guess);
+
         var $counter = $('#count');
-        $counter.html((parseInt($counter.html(), 10) || 0) + 1);
+        counter++
+        $counter.html(counter);
 
     })
 
@@ -51,20 +56,22 @@ function Random() {
 
 
 function Guessing(guess) {
-    var guess = document.getElementById("guessList").lastChild.innerHTML;
-    console.log(document.getElementById("guessList").lastChild.innerHTML);
+
+    var guess = parseInt(document.getElementById("guessList").lastChild.innerHTML);
+    console.log('guess', guess)
+    console.log(typeof guess)
+    // console.log(document.getElementById("guessList").lastChild.innerHTML);
 
     if (Choose === guess) {
         $("h2#feedback").html("You Win!");
-     } else if(Math.abs(Choose - guess) < 10 && Math.abs(Choose - guess) > 0){
+    } else if (Math.abs(Choose - guess) < 10 && Math.abs(Choose - guess) > 0) {
         $("h2#feedback").html("Hot");
-    } else if(Math.abs(Choose - guess) < 20 && Math.abs(Choose - guess) > 9){
+    } else if (Math.abs(Choose - guess) < 20 && Math.abs(Choose - guess) > 9) {
         $("h2#feedback").html("Warm");
-    } else if(Math.abs(Choose - guess) < 30 && Math.abs(Choose - guess) > 19){
+    } else if (Math.abs(Choose - guess) < 30 && Math.abs(Choose - guess) > 19) {
         $("h2#feedback").html("Cold");
     } else if (Math.abs(Choose - guess) < 40 && Math.abs(Choose - guess) > 99) {
         $("h2#feedback").html("Freezing");
-    } else {
-        $("h2#feedback").html("You Win!");
     }
+
 }
